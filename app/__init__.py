@@ -1,4 +1,5 @@
 from flask import Flask
+from app.routes import home
 
 def create_app(test_config=None):
   # set up app config
@@ -7,5 +8,11 @@ def create_app(test_config=None):
   app.config.from_mapping(
     SECRET_KEY='super_secret_key'
   )
+
+  @app.route('/hello')
+  def hello():
+    return 'hello world'
+  
+  app.register_blueprint(home)
 
   return app
